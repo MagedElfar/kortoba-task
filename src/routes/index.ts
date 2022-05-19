@@ -1,10 +1,15 @@
 import {Router} from "express";
-import auth from "./../auth/auth.route"
+import authMiddleware from "./../middleware/token";
+import auth from "./../auth/auth.route";
+import users from "./../user/user.route";
+import products from "./../products/products.route"
+
 const router = Router();
 
-
-//const {authMiddleware , authUserTypeMiddleware} = require("./../middleware/token");
-
 router.use(auth)
+router.use("/users" , authMiddleware , users);
+router.use("/products" , authMiddleware , products);
+
+
 
 export default router; 

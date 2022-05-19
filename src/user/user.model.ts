@@ -12,24 +12,19 @@ const insertUser = async (data:User):Promise<number> | never => {
     }
 }
 
-// const getUserById = async (id) => {
-//     try {
-//         const user =  await db("users")
-//         .leftJoin(...userModelJoin)
-//         .select(...userModelSelect)
-//         .where({"users.id" : id}).first();
-//         const {password , ...others} = user;
-//         filleterNullProperties(others)
-//         return others;
-//     } catch (error) { 
-//         console.log(error);
-//         throw formatDbError(error);
-//     }
-// }
+const getUserById = async (id:number): Promise<User> | never => {
+    try {
+        const user:User =  await db("users").where({id}).first();
+        return user;
+    } catch (error) { 
+        console.log(error);
+        throw formatDbError(error);
+    }
+}
 
 const getUserByEmail = async (email:string): Promise<User> | never => {
     try {
-        let user = await db("users").where({email}).first();
+        let user:User = await db("users").where({email}).first();
         return user;
     } catch (error) {
         console.log(error);
@@ -53,4 +48,4 @@ const getUserByEmail = async (email:string): Promise<User> | never => {
 //     }
 // }
 
-export {insertUser , getUserByEmail}
+export {insertUser , getUserByEmail , getUserById}

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
 import {accessToken} from "./../utils/helpers"
-import { Login, User } from "../user/user.interface";
+import { User } from "../user/user.interface";
 import { addUser, checkIfUserExist } from "../user/user.service";
 
 require("dotenv").config();

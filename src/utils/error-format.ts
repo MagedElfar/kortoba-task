@@ -20,7 +20,7 @@ const requestErrorFormat = (err:any) => {
         }
     );
 
-    return err;
+    return error;
 }
 
 export {formatDbError , requestErrorFormat}

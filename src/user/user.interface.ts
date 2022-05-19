@@ -5,6 +5,5 @@ interface User {
     password: string
 }
 
-interface Login extends Partial<User>{}
 
-export {User , Login}
+export {User}

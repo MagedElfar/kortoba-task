@@ -16,16 +16,11 @@ const loginValidation = [
     check('password').not().isEmpty().withMessage("password is required"),
 ]
 
-// //user validation
-// exports.userValidation = [
-//     expressValidator.check("email").not().isEmpty().isEmail().withMessage("Invalid Email Provided"),
-    
-//     expressValidator.check('purchase_date').optional().toDate().isISO8601().withMessage("Invalid Purchase Date Format Provided"),
+const productValidation = [
+    check("title").toLowerCase().not().isEmpty().withMessage("title is required"),
 
-//     expressValidator.check('address').optional().matches( /^[A-Za-z0-9 ]+$/).withMessage("Address Must not contain special characters"),
-
-//     expressValidator.check('insurance_id').optional().isLength({min: 3}).withMessage("Invalid Insurance ID Provided")
-// ]
+    check("price").toFloat().not().isEmpty().withMessage("price is required"),
+]
 
 //check validation
 const isValidate = (req:Request , res:Response , next:NextFunction) => {
@@ -52,4 +47,4 @@ const isValidate = (req:Request , res:Response , next:NextFunction) => {
     }
 }
 
-export {isValidate , signupValidation , loginValidation}
+export {isValidate , signupValidation , loginValidation , productValidation}

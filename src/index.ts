@@ -1,3 +1,4 @@
+import path from 'path';
 import express , {Application , Response , Request , urlencoded , json, NextFunction} from 'express';
 import cors from "cors";
 import {config} from "dotenv";
@@ -11,9 +12,13 @@ const port:number = parseInt(process.env.PORT!) || 5000;
 
 //server configuration
 const app:Application = express();
+
 app.use(cors())
 app.use(morgan("short"));
-app.use(urlencoded({extended: true}) , json())
+
+app.use("/media", express.static(path.join(__dirname , ".." , "public" , "media")));
+
+app.use(urlencoded({extended: true}) , json());
 
 //api routes 
 app.get("/" , (req:Request , res:Response) => {
@@ -28,7 +33,6 @@ app.use((err:any , req:Request , res:Response , next:NextFunction) =>{
 }) 
 
 //start server
-
 app.listen(port , () => {
     console.log(`server is running on port ${port}`)
 })
